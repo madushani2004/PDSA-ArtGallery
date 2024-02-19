@@ -511,7 +511,7 @@ public class HomeArtist extends javax.swing.JFrame {
             labelImage.setIcon(null);
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ArtistHome.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeArtist.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "File not found.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
