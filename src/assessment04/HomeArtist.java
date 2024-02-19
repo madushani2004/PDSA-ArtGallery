@@ -417,6 +417,10 @@ public class HomeArtist extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_selectfolderMouseClicked
 
+    private boolean isValidImageFile(File file) {
+        String fileName = file.getName();
+        return fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png");
+    }
 
     private void selectfolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectfolderActionPerformed
         JFileChooser fileChooser = new JFileChooser();
@@ -427,6 +431,12 @@ public class HomeArtist extends javax.swing.JFrame {
 
             if (load == JFileChooser.APPROVE_OPTION) {
                 f = fileChooser.getSelectedFile();
+
+                if (!isValidImageFile(f)) {
+                    JOptionPane.showMessageDialog(this, "Please select a valid image file.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
                 path = f.getAbsolutePath();
                 imagePath.setText(path);
                 ImageIcon li = new ImageIcon(path);
@@ -440,11 +450,70 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_selectfolderActionPerformed
 
 
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
     private void uploadbtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadbtn1MouseClicked
-        // TODO add your handling code here:
+         // TODO add your handling code here:
     }//GEN-LAST:event_uploadbtn1MouseClicked
 
     private void uploadbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbtn1ActionPerformed
+
+        if (artistName.getText().isEmpty() || artPrice.getText().isEmpty()
+            || titletxt1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the required fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validation: Check if the title contains only alphabetic characters
+        if (!titletxt1.getText().matches("^[a-zA-Z\\s]+$")) {
+            JOptionPane.showMessageDialog(this, "Invalid title format. Please enter a title with only alphabetic characters.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validation: Check if numeric fields contain valid numeric values
+        if (!isNumeric(artPrice.getText())) {
+            JOptionPane.showMessageDialog(this, "Invalid price format. Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validation: Check if the price is a valid double value
+        try {
+            Double.parseDouble(artPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid price format. Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (desc.getText().isEmpty() || path == null) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the required fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+         
+        try {
+            String title = titletxt1.getText();
+            String artist = artistName.getText();
+            String description = desc.getText();
+            
+            double price = Double.parseDouble(artPrice.getText());
+
+            File f = new File(path);
+            InputStream is = new FileInputStream(f);
+            
+            artistName.setText("");
+            artPrice.setText("");
+            desc.setText("");
+            imagePath.setText("");
+            titletxt1.setText("");
+            labelImage.setIcon(null);
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ArtistHome.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "File not found.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_uploadbtn1ActionPerformed
 
@@ -452,7 +521,15 @@ public class HomeArtist extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_uploadCancelbtnMouseClicked
 
-    private void uploadCancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadCancelbtnActionPerformed
+    private void uploadCancelbtnActionPerformed(java.awt.event.ActionEvent evt) {
+        //GEN-FIRST:event_uploadCancelbtnActionPerformed
+        artistName.setText("");
+        artPrice.setText("");
+        desc.setText("");
+        imagePath.setText("");
+        artistName.setText("");
+        labelImage.setIcon(null);
+       
 
     }//GEN-LAST:event_uploadCancelbtnActionPerformed
 
