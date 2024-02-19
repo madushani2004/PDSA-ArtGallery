@@ -503,6 +503,10 @@ public class HomeArtist extends javax.swing.JFrame {
             File f = new File(path);
             InputStream is = new FileInputStream(f);
             
+            ArtWorkLinkedList art = new ArtWorkLinkedList();
+            art.addArtwork(title, artist, price);
+            art.displayArtworks();
+            
             artistName.setText("");
             artPrice.setText("");
             desc.setText("");
@@ -511,7 +515,7 @@ public class HomeArtist extends javax.swing.JFrame {
             labelImage.setIcon(null);
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ArtistHome.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeArtist.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "File not found.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -522,7 +526,7 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_uploadCancelbtnMouseClicked
 
     private void uploadCancelbtnActionPerformed(java.awt.event.ActionEvent evt) {
-        //GEN-FIRST:event_uploadCancelbtnActionPerformed
+//GEN-FIRST:event_uploadCancelbtnActionPerformed
         artistName.setText("");
         artPrice.setText("");
         desc.setText("");
