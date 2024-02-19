@@ -560,6 +560,9 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_uploadArtworkMouseClicked
 
     private void updateRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateRemoveMouseClicked
+        UpdateRemove remove = new UpdateRemove();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(remove).setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_updateRemoveMouseClicked
 
