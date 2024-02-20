@@ -2,6 +2,7 @@
 package assessment04;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 class ArtworkNode {
     String title;
@@ -36,8 +37,9 @@ public class ArtWorkLinkedList {
         } else {
             tail.next = newNode;
             newNode.prev = tail;
-            tail = newNode;
+            tail = newNode;  
         }
+        JOptionPane.showMessageDialog(this,"Artwork added successfully.", JOptionPane.INFORMATION_MESSAGE);
     }
     
      public void displayArtworks() {
@@ -63,5 +65,47 @@ public class ArtWorkLinkedList {
         }
         
         return null; // Return null if artwork with the specified title is not found
+    }
+     // Update artwork based on the title
+   public void updateArtworkDetails(String title, String newTitle, String newArtist, double newPrice, String newDescription, String newImagePath) {
+        ArtworkNode artwork = searchArtworkByTitle(title);
+        if (artwork != null) {
+            // Update the artwork details
+            artwork.title = newTitle;
+            artwork.artist = newArtist;
+            artwork.price = newPrice;
+            artwork.description = newDescription;
+            artwork.imagePath = newImagePath;
+            JOptionPane.showMessageDialog(this, "Artwork with title '" + title + "' updated successfully.", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,"Artwork with title '" + title + "' not found.", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public void removeArtwork(String title) {
+        ArtworkNode current = head;
+
+        while (current != null) {
+            if (current.title.equals(title)) {
+                
+                if (current.prev != null) {
+                    current.prev.next = current.next;
+                } else {
+                    head = current.next;
+                }
+
+                if (current.next != null) {
+                    current.next.prev = current.prev;
+                } else {
+                    tail = current.prev;
+                }
+
+                JOptionPane.showMessageDialog(this, "Artwork with title '" + title + "' removed successfully.", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            current = current.next;
+        }
+           JOptionPane.showMessageDialog(this,"Artwork with title '" + title + "' not found.", JOptionPane.INFORMATION_MESSAGE);
     }
 }
