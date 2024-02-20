@@ -1,10 +1,7 @@
 
 package assessment04;
 
-/**
- *
- * @author user
- */
+import javax.swing.JTextField;
 public class artWork extends javax.swing.JPanel {
 
     /**
@@ -20,6 +17,9 @@ public class artWork extends javax.swing.JPanel {
         
     }
 
+    public JTextField getDocument() {
+        return commission;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

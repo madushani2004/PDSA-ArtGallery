@@ -159,9 +159,14 @@ public class AddCommission extends javax.swing.JInternalFrame {
             artNode.configure(title, artist, artist);
             
             grid.add(artNode);
+            
             current = current.next;
-        }
+            
+        }  
     }
+    public void calculateCommission(String commission){
+            
+        }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel grid;
