@@ -39,7 +39,7 @@ public class ArtWorkLinkedList {
             newNode.prev = tail;
             tail = newNode;  
         }
-        JOptionPane.showMessageDialog(this,"Artwork added successfully.","Successful", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Artwork added successfully.","Successful!!", JOptionPane.INFORMATION_MESSAGE);
     }
     
      public void displayArtworks() {
@@ -76,9 +76,9 @@ public class ArtWorkLinkedList {
             artwork.price = newPrice;
             artwork.description = newDescription;
             artwork.imagePath = newImagePath;
-            JOptionPane.showMessageDialog(this, "Artwork with title '" + title + "' updated successfully.","Successful", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Artwork with title '" + title + "' updated successfully.","Successful!!", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this,"Artwork with title '" + title + "' not found.","Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Artwork with title '" + title + "' not found.","Not Found", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -100,12 +100,12 @@ public class ArtWorkLinkedList {
                     tail = current.prev;
                 }
 
-                JOptionPane.showMessageDialog(this, "Artwork with title '" + title + "' removed successfully.","Successful", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Artwork with title '" + title + "' removed successfully.","Successful!!", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
 
             current = current.next;
         }
-           JOptionPane.showMessageDialog(this,"Artwork with title '" + title + "' not found.","Error", JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(this,"Artwork with title '" + title + "' not found.","Not Found", JOptionPane.INFORMATION_MESSAGE);
     }
 }
