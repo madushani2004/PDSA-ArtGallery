@@ -23,6 +23,7 @@ public class HomeArtist extends javax.swing.JFrame {
     String fname = null;
     int s = 0;
     byte[] pimage = null;
+    public static ArtWorkLinkedList art = new ArtWorkLinkedList();
 
     public HomeArtist() {
         initComponents();
@@ -503,9 +504,11 @@ public class HomeArtist extends javax.swing.JFrame {
             File f = new File(path);
             InputStream is = new FileInputStream(f);
             
-            ArtWorkLinkedList art = new ArtWorkLinkedList();
-            art.addArtwork(title, artist, price);
+            
+            art.addArtwork(title, artist, price,description,path);
             art.displayArtworks();
+            //UpdateRemove search = new UpdateRemove(art);
+            
             
             artistName.setText("");
             artPrice.setText("");
@@ -560,7 +563,7 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_uploadArtworkMouseClicked
 
     private void updateRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateRemoveMouseClicked
-        UpdateRemove remove = new UpdateRemove();
+        UpdateRemove remove = new UpdateRemove(art);
         jDesktopPane1.removeAll();
         jDesktopPane1.add(remove).setVisible(true);
         // TODO add your handling code here:
