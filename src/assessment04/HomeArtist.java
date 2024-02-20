@@ -412,11 +412,11 @@ public class HomeArtist extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void artPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artPriceActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_artPriceActionPerformed
 
     private void selectfolderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectfolderMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_selectfolderMouseClicked
 
     private boolean isValidImageFile(File file) {

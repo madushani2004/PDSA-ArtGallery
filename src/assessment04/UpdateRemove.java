@@ -134,7 +134,7 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
-                        .addGap(148, 148, 148))
+                        .addGap(132, 132, 132))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(24, 24, 24)
@@ -222,7 +222,7 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_artPriceActionPerformed
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void removebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removebtnActionPerformed
@@ -259,6 +259,7 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
         String imgPath = path.getText();
         
         art.removeArtwork(title);
+        art.displayArtworks();
 
     }//GEN-LAST:event_removebtnActionPerformed
     private boolean isNumeric(String str) {
@@ -302,8 +303,11 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
         String description = desc.getText();
         double price = Double.parseDouble(artPrice.getText());
         String imgPath = path.getText();
+        
+        
 
         art.updateArtworkDetails(title, title, artist, price, description, imgPath);
+        art.displayArtworks();
         artistName.setText("");
         artPrice.setText("");
         desc.setText("");
@@ -324,6 +328,7 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
         String search = searchField.getText();
         ArtworkNode artWork = art.searchArtworkByTitle(search);
         displayArtworkDetails(artWork);
+        
 
     }//GEN-LAST:event_jLabel1MouseClicked
 
