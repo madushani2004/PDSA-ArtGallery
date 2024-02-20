@@ -222,6 +222,7 @@
               <Properties>
                 <Property name="columns" type="int" value="5"/>
                 <Property name="rows" type="int" value="2"/>
+                <Property name="tabSize" type="int" value="5"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 20]"/>
                 </Property>
@@ -229,11 +230,6 @@
                   <Dimension value="[200, 84]"/>
                 </Property>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="null"/>
-                </Property>
-              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>

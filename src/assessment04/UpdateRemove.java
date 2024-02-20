@@ -68,10 +68,10 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
 
         desc.setColumns(5);
         desc.setRows(2);
+        desc.setTabSize(5);
         desc.setMinimumSize(new java.awt.Dimension(200, 20));
         desc.setPreferredSize(new java.awt.Dimension(200, 84));
         jScrollPane1.setViewportView(desc);
-        desc.getAccessibleContext().setAccessibleParent(null);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Image Path");

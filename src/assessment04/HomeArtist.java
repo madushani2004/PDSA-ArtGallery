@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.logging.Logger;
 import java.awt.Color;
+import javax.swing.JInternalFrame;
 
 public class HomeArtist extends javax.swing.JFrame {
 
@@ -31,7 +32,7 @@ public class HomeArtist extends javax.swing.JFrame {
         DefaultColor = new Color(40, 102, 110);
         ClickedColor = new Color(124, 152, 133);
 
-        uploadArtwork.setBackground(DefaultColor);
+        uploadArtwork.setBackground(ClickedColor);
         updateRemove.setBackground(DefaultColor);
         addCommision.setBackground(DefaultColor);
     }
@@ -437,7 +438,7 @@ public class HomeArtist extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Please select a valid image file.", "Validation Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
                 path = f.getAbsolutePath();
                 imagePath.setText(path);
                 ImageIcon li = new ImageIcon(path);
@@ -450,7 +451,6 @@ public class HomeArtist extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_selectfolderActionPerformed
 
-
     private boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);
@@ -459,15 +459,15 @@ public class HomeArtist extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     private void uploadbtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadbtn1MouseClicked
-         // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_uploadbtn1MouseClicked
 
     private void uploadbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbtn1ActionPerformed
 
         if (artistName.getText().isEmpty() || artPrice.getText().isEmpty()
-            || titletxt1.getText().isEmpty()) {
+                || titletxt1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all the required fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -485,7 +485,7 @@ public class HomeArtist extends javax.swing.JFrame {
         try {
             Double.parseDouble(artPrice.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Invalid price format. Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Invalid price format Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (desc.getText().isEmpty() || path == null) {
@@ -493,23 +493,20 @@ public class HomeArtist extends javax.swing.JFrame {
             return;
         }
 
-         
         try {
             String title = titletxt1.getText();
             String artist = artistName.getText();
             String description = desc.getText();
-            
+
             double price = Double.parseDouble(artPrice.getText());
 
             File f = new File(path);
             InputStream is = new FileInputStream(f);
-            
-            
-            art.addArtwork(title, artist, price,description,path);
+
+            art.addArtwork(title, artist, price, description, path);
             art.displayArtworks();
             //UpdateRemove search = new UpdateRemove(art);
-            
-            
+
             artistName.setText("");
             artPrice.setText("");
             desc.setText("");
@@ -536,7 +533,7 @@ public class HomeArtist extends javax.swing.JFrame {
         imagePath.setText("");
         artistName.setText("");
         labelImage.setIcon(null);
-       
+
 
     }//GEN-LAST:event_uploadCancelbtnActionPerformed
 
@@ -559,7 +556,9 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_addCommisionMousePressed
 
     private void uploadArtworkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadArtworkMouseClicked
-        // TODO add your handling code here:
+        
+        jDesktopPane1.setVisible(true); 
+
     }//GEN-LAST:event_uploadArtworkMouseClicked
 
     private void updateRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateRemoveMouseClicked
@@ -570,7 +569,9 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_updateRemoveMouseClicked
 
     private void addCommisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCommisionMouseClicked
-        // TODO add your handling code here:
+        AddCommission commission = new AddCommission();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(commission).setVisible(true);
     }//GEN-LAST:event_addCommisionMouseClicked
 
     public static void main(String args[]) {
