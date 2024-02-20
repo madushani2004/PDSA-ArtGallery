@@ -26,7 +26,7 @@ class ArtworkNode {
 }
 
 public class ArtWorkLinkedList {
-    private ArtworkNode head;
+    ArtworkNode head;
     private ArtworkNode tail;
 
     public void addArtwork(String title, String artist, double price,String description,String path) {
@@ -54,7 +54,6 @@ public class ArtWorkLinkedList {
             current = current.next;
         }
     }
-     
     public ArtworkNode searchArtworkByTitle(String title) {
         ArtworkNode current = head;
         while (current != null) {

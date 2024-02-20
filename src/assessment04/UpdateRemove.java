@@ -346,7 +346,7 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
             desc.setText(artwork.description);
             path.setText(artwork.imagePath);
         } else {
-            System.out.println("List is empty");
+            JOptionPane.showMessageDialog(null,"Artwork not found.","Not Found", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }

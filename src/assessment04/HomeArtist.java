@@ -259,7 +259,7 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_updateRemoveMouseClicked
 
     private void addCommisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCommisionMouseClicked
-        AddCommission commission = new AddCommission();
+        AddCommission commission = new AddCommission(art);
         jDesktopPane1.removeAll();
         jDesktopPane1.add(commission).setVisible(true);
     }//GEN-LAST:event_addCommisionMouseClicked

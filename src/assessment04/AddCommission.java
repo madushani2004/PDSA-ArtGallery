@@ -1,17 +1,16 @@
-
 package assessment04;
 
 import static assessment04.HomeArtist.art;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-
 public class AddCommission extends javax.swing.JInternalFrame {
 
-    public AddCommission() {
+    public AddCommission(ArtWorkLinkedList art) {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        displayArtDetails();
     }
 
     @SuppressWarnings("unchecked")
@@ -36,14 +35,14 @@ public class AddCommission extends javax.swing.JInternalFrame {
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
         grid.setForeground(new java.awt.Color(255, 0, 51));
-        grid.setLayout(new java.awt.GridLayout(1, 0));
+        grid.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(grid);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,12 +142,27 @@ public class AddCommission extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_updatePriceBtnMouseClicked
 
     private void updatePriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePriceBtnActionPerformed
-        
+
 
     }//GEN-LAST:event_updatePriceBtnActionPerformed
 
-   
+    public final void displayArtDetails() {
+        ArtworkNode current = art.head;
+        while (current != null) {
+            String title = current.title;
+            String artist = current.artist;
+            double price = current.price;
+            String description = current.description;
+            String imagePath = current.imagePath;
 
+            artWork artNode = new  artWork();
+            artNode.configure(title, artist, artist);
+            
+            grid.add(artNode);
+            current = current.next;
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel grid;
     private javax.swing.JLabel jLabel1;
