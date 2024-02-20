@@ -556,9 +556,9 @@ public class HomeArtist extends javax.swing.JFrame {
     }//GEN-LAST:event_addCommisionMousePressed
 
     private void uploadArtworkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uploadArtworkMouseClicked
-        
-        jDesktopPane1.setVisible(true); 
-
+       Upload upload = new Upload(art);
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(upload).setVisible(true);
     }//GEN-LAST:event_uploadArtworkMouseClicked
 
     private void updateRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateRemoveMouseClicked
