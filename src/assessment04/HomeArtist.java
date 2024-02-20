@@ -16,7 +16,7 @@ public class HomeArtist extends javax.swing.JFrame {
         DefaultColor = new Color(40, 102, 110);
         ClickedColor = new Color(124, 152, 133);
 
-        uploadArtwork.setBackground(ClickedColor);
+        uploadArtwork.setBackground(DefaultColor);
         updateRemove.setBackground(DefaultColor);
         addCommision.setBackground(DefaultColor);
     }
