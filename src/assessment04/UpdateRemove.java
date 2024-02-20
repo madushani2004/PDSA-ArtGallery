@@ -1,9 +1,8 @@
-
 package assessment04;
 
 import static assessment04.HomeArtist.art;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-
 
 public class UpdateRemove extends javax.swing.JInternalFrame {
 
@@ -227,23 +226,105 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void removebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removebtnActionPerformed
+        if (artistName.getText().isEmpty() || artPrice.getText().isEmpty()
+                || titletxt1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the required fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!titletxt1.getText().matches("^[a-zA-Z\\s]+$")) {
+            JOptionPane.showMessageDialog(this, "Invalid title format. Please enter a title with only alphabetic characters.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validation: Check if numeric fields contain valid numeric values
+        if (!isNumeric(artPrice.getText())) {
+            JOptionPane.showMessageDialog(this, "Invalid price format. Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validation: Check if the price is a valid double value
+        try {
+            Double.parseDouble(artPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid price format Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (desc.getText().isEmpty() || path == null) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the required fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
+        String title = titletxt1.getText();
+        String artist = artistName.getText();
+        String description = desc.getText();
+        double price = Double.parseDouble(artPrice.getText());
+        String imgPath = path.getText();
         
-    }//GEN-LAST:event_removebtnActionPerformed
+        art.removeArtwork(title);
 
+    }//GEN-LAST:event_removebtnActionPerformed
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
         // TODO add your handling code here:
+        if (artistName.getText().isEmpty() || artPrice.getText().isEmpty()
+                || titletxt1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the required fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!titletxt1.getText().matches("^[a-zA-Z\\s]+$")) {
+            JOptionPane.showMessageDialog(this, "Invalid title format. Please enter a title with only alphabetic characters.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validation: Check if numeric fields contain valid numeric values
+        if (!isNumeric(artPrice.getText())) {
+            JOptionPane.showMessageDialog(this, "Invalid price format. Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validation: Check if the price is a valid double value
+        try {
+            Double.parseDouble(artPrice.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid price format Please enter a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (desc.getText().isEmpty() || path == null) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the required fields", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String title = titletxt1.getText();
+        String artist = artistName.getText();
+        String description = desc.getText();
+        double price = Double.parseDouble(artPrice.getText());
+        String imgPath = path.getText();
+
+        art.updateArtworkDetails(title, title, artist, price, description, imgPath);
+        artistName.setText("");
+        artPrice.setText("");
+        desc.setText("");
+        path.setText("");
+        titletxt1.setText("");
     }//GEN-LAST:event_updatebtnActionPerformed
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
         // TODO add your handling code here:
+        artistName.setText("");
+        artPrice.setText("");
+        desc.setText("");
+        path.setText("");
+        titletxt1.setText("");
     }//GEN-LAST:event_cancelbtnActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         String search = searchField.getText();
         ArtworkNode artWork = art.searchArtworkByTitle(search);
         displayArtworkDetails(artWork);
-        
+
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void displayArtworkDetails(ArtworkNode artwork) {
@@ -254,10 +335,10 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
             artPrice.setText(String.valueOf(artwork.price));
             desc.setText(artwork.description);
             path.setText(artwork.imagePath);
-        }else{
+        } else {
             System.out.println("List is empty");
         }
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
