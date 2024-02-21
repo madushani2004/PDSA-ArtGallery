@@ -10,6 +10,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
     private double sumCommission = 0;
     private double totalIncome = 0;
     private double totalPriceAmount = 0;
+    private double priceAmount = 0;
 
     public AddCommission(ArtWorkLinkedList art) {
         initComponents();
@@ -151,6 +152,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
     private void updatePriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePriceBtnActionPerformed
 
         updateTotalCommission();
+        calculateTotalIncome();
     }//GEN-LAST:event_updatePriceBtnActionPerformed
 
     private void updateTotalCommission() {
@@ -160,7 +162,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
             if (component instanceof artWork) {
                 JTextField commissionText = ((artWork) component).getCommissionField();
                 String commissionValue = commissionText.getText();
-                calculateCommission(commissionValue);
+                calculateCommission(commissionValue,priceAmount);
             }
         }
         totalCommission.setText(String.valueOf(sumCommission));
@@ -171,8 +173,8 @@ public class AddCommission extends javax.swing.JInternalFrame {
         while (current != null) {
             String title = current.title;
             String artist = current.artist;
-            double price = current.price;
-            String newPrice = String.valueOf(price);
+            this.priceAmount = current.price;
+            String newPrice = String.valueOf(priceAmount);
             String description = current.description;
             String imagePath = current.imagePath;
 
@@ -181,7 +183,8 @@ public class AddCommission extends javax.swing.JInternalFrame {
 
             grid.add(artNode);
             String com = commissionText.getText();
-            calculateCommission(com);
+            //calculateCommission(com,priceAmount);
+            calculateTotalPrice(priceAmount);
             updateTotalCommission(); // Update total commission after adding each artWork
 
             grid.revalidate();
@@ -189,14 +192,23 @@ public class AddCommission extends javax.swing.JInternalFrame {
             current = current.next;
 
         }
+        calculateTotalIncome();
     }
 
-
-    public void calculateCommission(String commission) {
-        double commissionAmount = Double.parseDouble(commission);
+    public void calculateTotalIncome() {
         
+        totalIncome = totalPriceAmount + sumCommission;
+        totalInomes.setText(String.valueOf(totalIncome));
+    }
+    
+    public void calculateTotalPrice(double price) {
+        
+        totalPriceAmount += price;
+    }
 
-        //totalPriceAmount += price;
+    public void calculateCommission(String commission,double price) {
+        double commissionPrecentage = Double.parseDouble(commission);
+        double commissionAmount =price*(commissionPrecentage/100);
         sumCommission += commissionAmount;
     }
 

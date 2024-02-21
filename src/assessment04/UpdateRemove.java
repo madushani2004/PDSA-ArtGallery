@@ -321,7 +321,7 @@ public class UpdateRemove extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_updatebtnActionPerformed
 
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
-        // TODO add your handling code here:
+        
         artistName.setText("");
         artPrice.setText("");
         desc.setText("");
