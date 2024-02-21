@@ -4,22 +4,24 @@ package assessment04;
 import javax.swing.JTextField;
 public class artWork extends javax.swing.JPanel {
 
-    /**
-     * Creates new form artWork
-     */
     public artWork() {
         initComponents();
     }
-    public void configure(String title, String artistName, String price) {
+    public JTextField configure(String title, String artistName, String price) {
         this.title.setText(title);
         this.artistName.setText(artistName);
         this.price.setText(price);
+        this.commission.setText("0");
+        return commission;
         
     }
 
-    public JTextField getDocument() {
+    public JTextField getCommissionField() {
         return commission;
     }
+//    public JTextField getDocument() {
+//        return commission;
+//    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -1,9 +1,15 @@
 package assessment04;
 
 import static assessment04.HomeArtist.art;
+import java.awt.Component;
+import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class AddCommission extends javax.swing.JInternalFrame {
+
+    private double sumCommission = 0;
+    private double totalIncome = 0;
+    private double totalPriceAmount = 0;
 
     public AddCommission(ArtWorkLinkedList art) {
         initComponents();
@@ -11,6 +17,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         displayArtDetails();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -143,8 +150,21 @@ public class AddCommission extends javax.swing.JInternalFrame {
 
     private void updatePriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePriceBtnActionPerformed
 
-
+        updateTotalCommission();
     }//GEN-LAST:event_updatePriceBtnActionPerformed
+
+    private void updateTotalCommission() {
+        sumCommission = 0;
+        Component[] components = grid.getComponents();
+        for (Component component : components) {
+            if (component instanceof artWork) {
+                JTextField commissionText = ((artWork) component).getCommissionField();
+                String commissionValue = commissionText.getText();
+                calculateCommission(commissionValue);
+            }
+        }
+        totalCommission.setText(String.valueOf(sumCommission));
+    }
 
     public final void displayArtDetails() {
         ArtworkNode current = art.head;
@@ -152,22 +172,34 @@ public class AddCommission extends javax.swing.JInternalFrame {
             String title = current.title;
             String artist = current.artist;
             double price = current.price;
+            String newPrice = String.valueOf(price);
             String description = current.description;
             String imagePath = current.imagePath;
 
-            artWork artNode = new  artWork();
-            artNode.configure(title, artist, artist);
-            
+            artWork artNode = new artWork();
+            JTextField commissionText = artNode.configure(title, artist, newPrice);
+
             grid.add(artNode);
-            
+            String com = commissionText.getText();
+            calculateCommission(com);
+            updateTotalCommission(); // Update total commission after adding each artWork
+
+            grid.revalidate();
+            grid.repaint();
             current = current.next;
-            
-        }  
-    }
-    public void calculateCommission(String commission){
-            
+
         }
-    
+    }
+
+
+    public void calculateCommission(String commission) {
+        double commissionAmount = Double.parseDouble(commission);
+        
+
+        //totalPriceAmount += price;
+        sumCommission += commissionAmount;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel grid;
     private javax.swing.JLabel jLabel1;
