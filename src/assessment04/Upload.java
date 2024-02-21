@@ -308,7 +308,7 @@ public class Upload extends javax.swing.JInternalFrame {
             InputStream is = new FileInputStream(f);
 
             art.addArtwork(title, artist, price, description, path);
-            art.displayArtworks();
+            //art.displayArtworks();
             //UpdateRemove search = new UpdateRemove(art);
 
             artistName.setText("");

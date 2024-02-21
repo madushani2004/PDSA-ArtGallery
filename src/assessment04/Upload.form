@@ -84,10 +84,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelImage" min="-2" pref="173" max="-2" attributes="0"/>
-                          <EmptySpace min="23" pref="218" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="labelImage" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -121,9 +118,9 @@
                               <Component id="uploadbtn1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="uploadCancelbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
