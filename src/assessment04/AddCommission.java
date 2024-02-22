@@ -2,6 +2,7 @@ package assessment04;
 
 import static assessment04.HomeArtist.art;
 import java.awt.Component;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -10,13 +11,15 @@ public class AddCommission extends javax.swing.JInternalFrame {
     private double sumCommission = 0;
     private double totalIncome = 0;
     private double totalPriceAmount = 0;
-    private double priceAmount = 0;
+    private ArtWorkBinarySearchTree bst;
 
     public AddCommission(ArtWorkLinkedList art) {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        bst = new ArtWorkBinarySearchTree();
+
         displayArtDetails();
 
     }
@@ -63,7 +66,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
 
         totalCommission.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         totalCommission.setForeground(new java.awt.Color(255, 255, 255));
-        totalCommission.setText("jLabel3");
+        totalCommission.setText("0.0");
 
         updatePriceBtn.setBackground(new java.awt.Color(40, 102, 110));
         updatePriceBtn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -86,7 +89,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
 
         totalInomes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         totalInomes.setForeground(new java.awt.Color(255, 255, 255));
-        totalInomes.setText("jLabel3");
+        totalInomes.setText("0.0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,65 +154,84 @@ public class AddCommission extends javax.swing.JInternalFrame {
 
     private void updatePriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePriceBtnActionPerformed
 
-        updateTotalCommission();
-        calculateTotalIncome();
-    }//GEN-LAST:event_updatePriceBtnActionPerformed
+        transferAndCalculate();
+        //calculateTotalIncome();
 
-    private void updateTotalCommission() {
-        sumCommission = 0;
-        Component[] components = grid.getComponents();
-        for (Component component : components) {
-            if (component instanceof artWork) {
-                JTextField commissionText = ((artWork) component).getCommissionField();
-                String commissionValue = commissionText.getText();
-                calculateCommission(commissionValue,priceAmount);
-            }
-        }
-        totalCommission.setText(String.valueOf(sumCommission));
-    }
+        art.removeAll();
+        grid.revalidate();
+        grid.repaint();
+        bst.inOrderTraversal(bst.root);
+    }//GEN-LAST:event_updatePriceBtnActionPerformed
 
     public final void displayArtDetails() {
         ArtworkNode current = art.head;
         while (current != null) {
-            String title = current.title;
+            String titleName = current.title;
             String artist = current.artist;
-            this.priceAmount = current.price;
+            double priceAmount = current.price;
             String newPrice = String.valueOf(priceAmount);
             String description = current.description;
             String imagePath = current.imagePath;
 
-            artWork artNode = new artWork();
-            JTextField commissionText = artNode.configure(title, artist, newPrice);
+            artWork artNode = new artWork(); // Create a new instance of artWork for each artwork
+            artNode.configure(titleName, artist, newPrice);
 
             grid.add(artNode);
-            String com = commissionText.getText();
-            //calculateCommission(com,priceAmount);
-            calculateTotalPrice(priceAmount);
-            updateTotalCommission(); // Update total commission after adding each artWork
 
-            grid.revalidate();
-            grid.repaint();
             current = current.next;
+        }
+    }
+
+    public void transferAndCalculate() {
+        Component[] components = grid.getComponents();
+        for (Component component : components) {
+            if (component instanceof artWork) {
+                artWork artwork = (artWork) component;
+                JTextField commissionText = artwork.getCommissionField();
+                JLabel priceLabel = artwork.getPrice();
+                String price = priceLabel.getText().trim();
+                String commissionValue = commissionText.getText().trim(); // Trim any leading or trailing whitespace
+
+                JLabel titleLabel = artwork.getTitle();
+                String myTitle = titleLabel.getText().trim();
+
+                if (!commissionValue.isEmpty()) {
+                    double commissionPercentage = Double.parseDouble(commissionValue);
+                    double priceAmount = Double.parseDouble(price);
+                    double commissionAmount = priceAmount * (commissionPercentage / 100);
+
+                    calculateTotalPrice(priceAmount);
+                    sumCommission += commissionAmount;
+                    calculateTotalIncome();
+
+                    ArtworkNode newSet = art.searchArtworkByTitle(myTitle);
+
+                    String titleName = newSet.title;
+                    String artist = newSet.artist;
+                    double amount = newSet.price;
+                    String description = newSet.description;
+                    String imagePath = newSet.imagePath;
+
+                    bst.insert(new ArtworkSet(artist, title, priceAmount, imagePath, description), commissionAmount);
+                }
+
+            }
 
         }
-        calculateTotalIncome();
+
+        totalCommission.setText(String.valueOf(sumCommission));
+
+        grid.revalidate();
+        grid.repaint();
     }
 
     public void calculateTotalIncome() {
-        
         totalIncome = totalPriceAmount + sumCommission;
         totalInomes.setText(String.valueOf(totalIncome));
     }
-    
-    public void calculateTotalPrice(double price) {
-        
-        totalPriceAmount += price;
-    }
 
-    public void calculateCommission(String commission,double price) {
-        double commissionPrecentage = Double.parseDouble(commission);
-        double commissionAmount =price*(commissionPrecentage/100);
-        sumCommission += commissionAmount;
+    public void calculateTotalPrice(double price) {
+        totalPriceAmount += price;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

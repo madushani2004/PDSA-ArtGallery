@@ -107,4 +107,14 @@ public class ArtWorkLinkedList {
         }
            JOptionPane.showMessageDialog(null,"Artwork with title '" + title + "' not found.","Not Found", JOptionPane.INFORMATION_MESSAGE);
     }
+    public void removeAll() {
+        while (head != null) {
+            ArtworkNode temp = head;
+            head = head.next;
+            temp.prev = null;
+            temp.next = null;
+        }
+        tail = null;
+    }
+
 }

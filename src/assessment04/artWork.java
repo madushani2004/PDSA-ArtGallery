@@ -1,19 +1,27 @@
 
 package assessment04;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 public class artWork extends javax.swing.JPanel {
 
     public artWork() {
         initComponents();
     }
-    public JTextField configure(String title, String artistName, String price) {
+    public void configure(String title, String artistName, String price) {
         this.title.setText(title);
         this.artistName.setText(artistName);
         this.price.setText(price);
         this.commission.setText("0");
-        return commission;
+        //return commission;
         
+    }
+    public JLabel getTitle() {
+        return title;
+    }
+    
+    public JLabel getPrice() {
+        return price;
     }
 
     public JTextField getCommissionField() {
