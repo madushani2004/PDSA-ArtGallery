@@ -45,6 +45,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
 
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
+        grid.setBackground(new java.awt.Color(124, 152, 133));
         grid.setForeground(new java.awt.Color(255, 0, 51));
         grid.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(grid);
@@ -138,7 +139,7 @@ public class AddCommission extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,10 +158,14 @@ public class AddCommission extends javax.swing.JInternalFrame {
         transferAndCalculate();
         //calculateTotalIncome();
 
-        art.removeAll();
+        art.clear();
+        grid.removeAll();
+        
         grid.revalidate();
         grid.repaint();
+        
         bst.inOrderTraversal(bst.root);
+
     }//GEN-LAST:event_updatePriceBtnActionPerformed
 
     public final void displayArtDetails() {
